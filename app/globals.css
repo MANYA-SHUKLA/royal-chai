@@ -1,0 +1,444 @@
+@import "tailwindcss";
+@theme {
+  --color-cream: #fffaf0;
+  --color-brown-900: #43302b;
+}
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-cream text-brown-900 overflow-x-hidden;
+  }
+}
+@layer utilities {
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(0, 0, 0, 0.06) 0 1px, transparent 1px),
+      radial-gradient(circle at 80% 30%, rgba(0, 0, 0, 0.05) 0 1px, transparent 1px),
+      radial-gradient(circle at 50% 70%, rgba(0, 0, 0, 0.04) 0 1px, transparent 1px);
+    background-size: 12px 12px;
+    mix-blend-mode: multiply;
+    opacity: 0.12;
+  }
+  .shimmer {
+    background-size: 200% 200%;
+    animation: shimmer 9s ease-in-out infinite;
+  }
+  .float-slow {
+    animation: floatY 9s ease-in-out infinite;
+  }
+  .float-slower {
+    animation: floatY 13s ease-in-out infinite;
+  }
+  .float-spin {
+    animation: floatSpin 18s ease-in-out infinite;
+  }
+  .hover-lift {
+    transition: transform 300ms ease, box-shadow 300ms ease;
+    will-change: transform;
+  }
+  .hover-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 22px 55px rgba(67, 48, 43, 0.14);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .shimmer,
+    .float-slow,
+    .float-slower,
+    .float-spin {
+      animation: none !important;
+    }
+    .hover-lift {
+      transition: none;
+    }
+  }
+  .animate-pulse-gentle {
+    animation: pulse-gentle 3s ease-in-out infinite;
+  }
+
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+  .delay-400 {
+    animation-delay: 400ms;
+  }
+  .delay-600 {
+    animation-delay: 600ms;
+  }
+  .delay-800 {
+    animation-delay: 800ms;
+  }
+  .delay-1000 {
+    animation-delay: 1000ms;
+  }
+
+  .animate-shimmer {
+    animation: shimmerX 2s linear infinite;
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 8s linear infinite;
+  }
+  
+  .animate-spin-slow-reverse {
+    animation: spin-slow-reverse 6s linear infinite;
+  }
+  
+  .animate-ping {
+    animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-bounce {
+    animation: bounce 0.5s ease-in-out infinite;
+  }
+
+  .animate-slide-in {
+    animation: slideIn 0.3s ease-out;
+  }
+
+  .ease-out-expo {
+    transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .animate-float-slow {
+    animation: float-slow 6s ease-in-out infinite;
+  }
+  
+  .animate-float-slower {
+    animation: float-slower 8s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse-slow 3s ease-in-out infinite;
+  }
+
+  .confetti-particle {
+    animation: confetti-fall linear forwards;
+  }
+
+  .animate-pulse-orb {
+    animation: pulse-orb 8s ease-in-out infinite;
+  }
+  
+  .animate-pulse-orb-reverse {
+    animation: pulse-orb-reverse 10s ease-in-out infinite;
+  }
+  
+  .animate-float-ornament-1 {
+    animation: float-ornament-1 7s ease-in-out infinite;
+  }
+  
+  .animate-float-ornament-2 {
+    animation: float-ornament-2 9s ease-in-out infinite;
+  }
+  
+  .animate-float-ornament-3 {
+    animation: float-ornament-3 8s ease-in-out infinite;
+  }
+  
+  .animate-float-ornament-4 {
+    animation: float-ornament-4 6s ease-in-out infinite;
+  }
+  
+  .animate-float-particle {
+    animation: float-particle 4s ease-in-out infinite;
+  }
+  
+  .animate-orbit {
+    animation: orbit 12s linear infinite;
+  }
+  
+  .animate-ray-rotate {
+    animation: ray-rotate 20s linear infinite;
+  }
+  
+  .animate-ping-gentle {
+    animation: ping-gentle 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  .animate-pulse-slow-reverse {
+    animation: pulse-slow-reverse 8s ease-in-out infinite;
+  }
+
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+  
+  .text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+}
+
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -18px, 0);
+  }
+}
+@keyframes floatSpin {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0) rotate(6deg);
+  }
+}
+
+@keyframes shimmerX {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(180deg);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes pulse-gentle {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  33% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  66% {
+    transform: translateY(10px) translateX(-10px);
+  }
+}
+
+@keyframes float-slower {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  25% {
+    transform: translateY(-15px) translateX(-15px);
+  }
+  50% {
+    transform: translateY(10px) translateX(15px);
+  }
+  75% {
+    transform: translateY(15px) translateX(-5px);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.1;
+  }
+}
+
+@keyframes confetti-fall {
+  to {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-orb {
+  0%, 100% {
+    opacity: 0.25;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.15;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes pulse-orb-reverse {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.1;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes spin-slow-reverse {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes float-ornament-1 {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 0.2;
+  }
+}
+
+@keyframes float-ornament-2 {
+  0%, 100% {
+    transform: translateY(0) rotate(45deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(15px) rotate(225deg);
+    opacity: 0.1;
+  }
+}
+
+@keyframes float-ornament-3 {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-15px) scale(1.2);
+    opacity: 0.6;
+  }
+}
+
+@keyframes float-ornament-4 {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translateY(20px);
+    opacity: 0.1;
+  }
+}
+
+@keyframes float-particle {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-10px) translateX(5px);
+  }
+  50% {
+    transform: translateY(0) translateX(10px);
+  }
+  75% {
+    transform: translateY(10px) translateX(5px);
+  }
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateX(40%) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(40%) rotate(-360deg);
+  }
+}
+
+@keyframes ray-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ping-gentle {
+  75%, 100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-slow-reverse {
+  0%, 100% {
+    opacity: 0.1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.05;
+    transform: scale(0.95);
+  }
+}
